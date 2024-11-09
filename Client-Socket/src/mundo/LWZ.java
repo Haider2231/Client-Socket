@@ -30,7 +30,7 @@ public class LWZ {
             entry = currentString + currentString.charAt(0);
         } else {
             throw new IllegalArgumentException("Código inválido: " + code);
-        }
+            }
 
         String result = entry;
         if (!currentString.isEmpty()) {

@@ -28,20 +28,24 @@ public class Controlador {
    
     
     // Método para conectarse al servidor y recibir datos comprimidos
-    public void recibirYMostrarTextoDescomprimido() {
-        try (Socket socketToServer = new Socket("192.168.20.52", 5000);
+    public void recibirYMostrar() {
+        try (Socket socketToServer = new Socket("192.168.20.36", 5000);
              ObjectInputStream in = new ObjectInputStream(socketToServer.getInputStream())) {
 
             while (true) {
                 try {
                     Integer code = (Integer) in.readObject(); // Leer un código comprimido
                     if (code != null) {
-                        String textoDescomprimido = modelo.decompress(code); // Descomprimir
-                        pnlText.mostrarTexto(textoDescomprimido); // Mostrar en la vista
+                        String textoDescomprimido = modelo.decompress(code); 
+                        pnlText.mostrarTexto(textoDescomprimido); 
+                        pnlcodigo.agregarTexto(code); 
                         Thread.sleep(1000); 
+
                     } else {
                         break;
                     }
+                    
+                    
                 } catch (Exception e) {
                     break;
                 }
@@ -51,29 +55,7 @@ public class Controlador {
             e.printStackTrace();
         }
     }
-    
-    public void recibirYMostrarCodigo() {
-    try (Socket socketToServer = new Socket("192.168.20.52", 5000);
-         ObjectInputStream in = new ObjectInputStream(socketToServer.getInputStream())) {
-
-        while (true) {
-            try {
-                Integer code = (Integer) in.readObject(); 
-                if (code != null) {
-                    pnlcodigo.agregarTexto(code); 
-                    Thread.sleep(1000);
-                } else {
-                    break;
-                }
-            } catch (Exception e) {
-                break;
-            }
-        }
-
-    } catch (Exception e) {
-        e.printStackTrace();
-    }
-}
+   
 
     
 }

@@ -34,8 +34,7 @@ public class ventanaPrincipal extends JFrame {
         
         setVisible(true);
 
-       ctrl.recibirYMostrarCodigo();
-       ctrl.recibirYMostrarTextoDescomprimido(); 
+       ctrl.recibirYMostrar(); 
     }
 
     public static void main(String[] args) {
